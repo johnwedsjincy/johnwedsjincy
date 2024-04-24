@@ -26,7 +26,7 @@
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	
+
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
@@ -42,25 +42,29 @@
 	</audio>
 	<!-- <div class="fh5co-loader"></div> -->
 	<div id="page">
-		<header id="fh5co-header" class="fh5co-cover" role="banner"  style="background-image:url(assets/bg.gif);width: 100%;height: 700px;"
-			data-stellar-background-ratio="0.5">
-			<div class="overlay"></div>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center">
-						<div class="display-t">
-							<div class="display-tc animate-box" data-animate-effect="fadeIn">
-								<h1 style="color: ;">John &amp; Jincy</h1>
-								<h2>We Are Getting Married</h2>
-								<div class="simply-countdown simply-countdown-one"></div>
-								<p><a href="https://www.google.com/calendar/render?action=TEMPLATE&text=John%20Wedding&dates=20240701T160000%2B0530/20240701T170000%2B0530&details=John%20aka%20Sagar%20is%20getting%20married%20with%20Jincy%20Kuriakose&location=Holy%20Ghost%20Forane%20Church%20Muttuchira&sf=true&output=xml"
-										class="btn btn-default btn-sm" target="_blank">Save the date</a></p>
+		<a onclick="playAudio()">
+			<header id="fh5co-header" class="fh5co-cover" role="banner"
+				style="background-image:url(assets/bg.gif);width: 100%;height: 700px;"
+				data-stellar-background-ratio="0.5">
+				<div class="overlay"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2 text-center">
+							<div class="display-t">
+								<div class="display-tc animate-box" data-animate-effect="fadeIn">
+									<h1 style="color: ;">John &amp; Jincy</h1>
+									<h2>We Are Getting Married</h2>
+									<div class="simply-countdown simply-countdown-one"></div>
+									<p><a href="https://www.google.com/calendar/render?action=TEMPLATE&text=John%20Wedding&dates=20240701T160000%2B0530/20240701T170000%2B0530&details=John%20aka%20Sagar%20is%20getting%20married%20with%20Jincy%20Kuriakose&location=Holy%20Ghost%20Forane%20Church%20Muttuchira&sf=true&output=xml"
+											class="btn btn-default btn-sm" target="_blank">Save the date</a></p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</header>
+			</header>
+		</a>
+
 
 		<div id="fh5co-couple">
 			<div class="container">
@@ -685,8 +689,14 @@
 			enableUtc: false
 		});
 	</script>
-	
+
 	<script>
+		function playAudio() {
+			var audio = document.getElementById("myAudio");
+			audio.play();
+		}
+	</script>
+	<!-- <script>
 		// Get the audio element
 		var audio = document.getElementById("myAudio");
 
@@ -698,14 +708,14 @@
 
 		// Autoplay the audio
 		audio.play();
-	</script>
+	</script> -->
 	<script>
 		// Hide the preloader after 5 seconds
-		setTimeout(function() {
-		  var preloader = document.getElementById('preloader');
-		  preloader.style.display = 'none';
+		setTimeout(function () {
+			var preloader = document.getElementById('preloader');
+			preloader.style.display = 'none';
 		}, 10000); // 5000 milliseconds = 5 seconds
-	  </script>
+	</script>
 
 </body>
 

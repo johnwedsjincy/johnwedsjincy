@@ -37,15 +37,14 @@
 
 <body>
 	<audio id="myAudio" autoplay loop>
-		<source src="assets/song.mp3" type="audio/mpeg">
+		<!-- <source src="assets/song.mp3" type="audio/mpeg"> -->
 		Your browser does not support the audio element.
 	</audio>
 	<!-- <div class="fh5co-loader"></div> -->
 	<div id="page">
 		<a onclick="playAudio()">
 			<header id="fh5co-header" class="fh5co-cover" role="banner"
-				style="background-image:url(assets/bg.gif);width: 100%;"
-				data-stellar-background-ratio="0.5">
+				style="background-image:url(assets/bg.gif);width: 100%;" data-stellar-background-ratio="0.5">
 				<div class="overlay"></div>
 				<div class="container">
 					<div class="row">
@@ -55,8 +54,9 @@
 									<h1 style="color:white ;">John &amp; Jincy</h1>
 									<h2>We Are Getting Married</h2>
 									<div class="simply-countdown simply-countdown-one"></div>
-									<p><a href="https://www.google.com/calendar/render?action=TEMPLATE&text=John%20Wedding&dates=20240701T160000%2B0530/20240701T170000%2B0530&details=John%20aka%20Sagar%20is%20getting%20married%20with%20Jincy%20Kuriakose&location=Holy%20Ghost%20Forane%20Church%20Muttuchira&sf=true&output=xml"
-											class="btn btn-default btn-sm" target="_blank">Save the date</a></p>
+									<p><a href="javascript:void(0);" onclick="addEventToCalendar()" class="btn btn-default btn-sm">Save The Date</a></p>
+									<!-- <p><a href="https://www.google.com/calendar/render?action=TEMPLATE&text=John%20Wedding&dates=20240701T160000%2B0530/20240701T170000%2B0530&details=John%20aka%20Sagar%20is%20getting%20married%20with%20Jincy%20Kuriakose&location=Holy%20Ghost%20Forane%20Church%20Muttuchira&sf=true&output=xml"
+											class="btn btn-default btn-sm" target="_blank">Save the date</a></p> -->
 								</div>
 							</div>
 						</div>
@@ -694,6 +694,42 @@
 		function playAudio() {
 			var audio = document.getElementById("myAudio");
 			audio.play();
+		}
+	</script>
+	<script>
+		function addEventToCalendar() {
+			// Event details
+			var eventName = "John Wedding";
+			var eventLocation = "Holy Ghost Forane Church Muttuchira";
+			var eventStartDate = "2024-07-01T16:00:00";
+			var eventEndDate = "2024-07-01T17:00:00";
+			var eventDetails = "John aka Sagar is getting married with Jincy Kuriakose";
+
+			// Generate the URI for adding event to calendar
+			var calendarURI = "BEGIN:VCALENDAR\n" +
+				"VERSION:2.0\n" +
+				"BEGIN:VEVENT\n" +
+				"SUMMARY:" + eventName + "\n" +
+				"LOCATION:" + eventLocation + "\n" +
+				"DTSTART:" + eventStartDate + "\n" +
+				"DTEND:" + eventEndDate + "\n" +
+				"DESCRIPTION:" + eventDetails + "\n" +
+				"END:VEVENT\n" +
+				"END:VCALENDAR";
+
+			// Encode the calendar data for the URI
+			var encodedCalendarData = encodeURIComponent(calendarURI);
+
+			// Create the data URI
+			var dataURI = "data:text/calendar;charset=utf-8," + encodedCalendarData;
+
+			// Create a link element and simulate click to prompt user to add event to calendar
+			var link = document.createElement("a");
+			link.setAttribute("href", dataURI);
+			link.setAttribute("download", "event.ics");
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
 		}
 	</script>
 	<!-- <script>

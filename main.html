@@ -37,14 +37,14 @@
 
 <body>
 	<audio id="myAudio" autoplay loop>
-		<!-- <source src="assets/song.mp3" type="audio/mpeg"> -->
+		<source src="assets/song.mp3" type="audio/mpeg">
 		Your browser does not support the audio element.
 	</audio>
 	<!-- <div class="fh5co-loader"></div> -->
 	<div id="page">
 		<a onclick="playAudio()">
 			<header id="fh5co-header" class="fh5co-cover" role="banner"
-				style="background-image:url(assets/bg.gif);width: 100%;" data-stellar-background-ratio="0.5">
+				style="background-image:url(assets/bglow.gif);width: 100%;" data-stellar-background-ratio="0.5">
 				<div class="overlay"></div>
 				<div class="container">
 					<div class="row">
@@ -53,10 +53,13 @@
 								<div class="display-tc animate-box" data-animate-effect="fadeIn">
 									<h1 style="color:white ;">John &amp; Jincy</h1>
 									<h2>We Are Getting Married</h2>
-									<div class="simply-countdown simply-countdown-one"></div>
-									<p><a href="javascript:void(0);" onclick="addEventToCalendar()" class="btn btn-default btn-sm">Save The Date</a></p>
-									<!-- <p><a href="https://www.google.com/calendar/render?action=TEMPLATE&text=John%20Wedding&dates=20240701T160000%2B0530/20240701T170000%2B0530&details=John%20aka%20Sagar%20is%20getting%20married%20with%20Jincy%20Kuriakose&location=Holy%20Ghost%20Forane%20Church%20Muttuchira&sf=true&output=xml"
+									<!-- <div class="simply-countdown simply-countdown-one"></div> -->
+									<!-- <p><a href="javascript:void(0);" onclick="addEventToCalendar()"
+											class="btn btn-default btn-sm">Save The Date</a></p> -->
+									<!-- <p><a href="https://www.google.com/calendar/render?action=TEMPLATE&text=John%20Wedding&dates=20240701T160000%2B0530/20240701T170000%2B0530&details=Wish%20them%20on%20their%20new%20journey%20together&location=Holy%20Ghost%20Forane%20Church%20Muttuchira&sf=true&output=xml"
 											class="btn btn-default btn-sm" target="_blank">Save the date</a></p> -->
+									<p><a href="assets/invitation.jpg" download="Invitation" class="btn btn-default btn-sm"
+											target="_blank">Save the date</a></p>
 								</div>
 							</div>
 						</div>
@@ -103,7 +106,7 @@
 			</div>
 		</div>
 
-		<div id="fh5co-event" class="fh5co-bg" style="background-image:url(images/img_bg_3.jpg);">
+		<div id="fh5co-event" class="fh5co-bg" style="background-image:url(assets/bg.jpg);">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row">
@@ -299,13 +302,15 @@
 			</div>
 		</div>
 
-		<div id="fh5co-gallery" class="fh5co-section-gray">
+		<div id="fh5co-gallery" class="fh5co-section-gray"
+			style="background-image: url(assets/bg.jpg);height: 100%;width: 100%;background-size: cover;background-position: center;">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
 						<!-- <span>Our Memories</span> -->
 						<h2>Pre Wedding</h2>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+						<p style="color: #856e49;">Far far away, behind the word mountains, far from the countries
+							Vokalia and Consonantia,
 							there live the blind texts.</p>
 					</div>
 				</div>
@@ -725,8 +730,8 @@
 
 			// Create a link element and simulate click to prompt user to add event to calendar
 			var link = document.createElement("a");
-			link.setAttribute("href", dataURI);
-			link.setAttribute("download", "event.ics");
+			// link.setAttribute("href", dataURI);
+			// link.setAttribute("download", "event.ics");
 			document.body.appendChild(link);
 			link.click();
 			document.body.removeChild(link);

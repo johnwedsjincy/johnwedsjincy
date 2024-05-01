@@ -401,6 +401,7 @@ h1, h2, h3, h4, h5, h6, figure {
   #fh5co-event .display-t,
   #fh5co-event .display-tc {
     height: inherit;
+    
   }
 }
 #fh5co-counter .event-wrap,
@@ -414,6 +415,17 @@ h1, h2, h3, h4, h5, h6, figure {
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   border-radius: 4px;
+}
+@media screen and (min-width:1000px) {
+  #fh5co-event .event-wrap{
+    height: 500px;
+  }
+}
+@media screen and (min-width:768px) and (max-width:1000px){
+  #fh5co-event .event-wrap{
+    height:550px;
+  }
+  
 }
 @media screen and (max-width: 768px) {
   #fh5co-counter .event-wrap,

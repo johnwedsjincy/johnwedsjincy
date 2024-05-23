@@ -28,12 +28,15 @@
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
-
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore-compat.js"></script>
+
 </head>
 
 <body>
@@ -486,58 +489,13 @@
 					<div class="row animate-box">
 						<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 							<h2>Best Wishes</h2>
-							<!-- <h2>Friends Wishes</h2> -->
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12 animate-box">
 							<div class="wrap-testimony">
-								<div class="owl-carousel-fullwidth">
-									<div class="item">
-										<div class="testimony-slide active text-center">
-											<figure>
-												<img src="images/couple-1.jpg" alt="user">
-											</figure>
-											<span>Abraham KJ</span>
-											<blockquote>
-												<p>"May your journey together be as beautiful as the love you share, and
-													may every moment be filled with joy, laughter, and endless
-													blessings. Congratulations on your wedding day, my dear son and
-													daughter-in-law. Always remember, love is the foundation upon which
-													your future is built."</p>
-											</blockquote>
-										</div>
-									</div>
-									<div class="item">
-										<div class="testimony-slide active text-center">
-											<figure>
-												<img src="images/couple-2.jpg" alt="user">
-											</figure>
-											<span>Ancy Abraham</span>
-											<blockquote>
-												<p>"Seeing you both together fills my heart with immense joy and pride.
-													May your journey together be as beautiful as your wedding day,
-													filled with love, laughter, and endless blessings. Congratulations,
-													my dear son and cherished daughter-in-law. Wishing you a lifetime of
-													happiness and cherished memories."</p>
-											</blockquote>
-										</div>
-									</div>
-									<div class="item">
-										<div class="testimony-slide active text-center">
-											<figure>
-												<img src="images/couple-3.jpg" alt="user">
-											</figure>
-											<span>Riya Abraham</span>
-											<blockquote>
-												<p>"May your love story continue to inspire, your journey together be
-													filled with endless joy, and your bond grow stronger with each
-													passing day. Wishing my dear brother and sister-in-law a lifetime of
-													love, laughter, and happiness as you embark on this beautiful
-													journey together."</p>
-											</blockquote>
-										</div>
-									</div>
+								<div class="owl-carousel-fullwidth" id="testimonials-carousel">
+									<!-- Testimonials will be dynamically added here -->
 								</div>
 							</div>
 						</div>
@@ -584,6 +542,65 @@
 		<!-- Main -->
 		<script src="js/main.js"></script>
 
+		<!-- Fetch data from firebase -->
+		<!-- <script src="js/wish.js"></script> -->
+
+
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				// Your web app's Firebase configuration
+				var firebaseConfig = {
+					apiKey: "AIzaSyAi5B00blBvEoioXkgjgBxihfZO9iO0H6k",
+					authDomain: "wedding-34fd2.firebaseapp.com",
+					projectId: "wedding-34fd2",
+					storageBucket: "wedding-34fd2.appspot.com",
+					messagingSenderId: "638999458531",
+					appId: "1:638999458531:web:2a9e0846004fda9cba0bd6"
+				};
+
+				// Initialize Firebase
+				firebase.initializeApp(firebaseConfig);
+				var db = firebase.firestore();
+
+				// Fetch data from Firestore
+				db.collection("users").get().then((querySnapshot) => {
+					const carousel = document.getElementById("testimonials-carousel");
+					carousel.innerHTML = ""; // Clear any existing content
+					querySnapshot.forEach((doc) => {
+						const data = doc.data();
+						const testimonialItem = document.createElement("div");
+						testimonialItem.classList.add("item");
+						testimonialItem.innerHTML = `
+                <div class="testimony-slide active text-center">
+                    <span class="best">${data.name}</span>
+                    <blockquote>
+                        <p>"${data.message}"</p>
+                    </blockquote>
+                </div>
+            `;
+						carousel.appendChild(testimonialItem);
+					});
+
+					// Initialize the carousel after adding the items
+					$('.owl-carousel-fullwidth').owlCarousel({
+						loop: true,
+						margin: 10,
+						// nav: true,
+						items: 1,
+						autoHeight: true,
+						autoplay: true,
+						autoplayTimeout: 5000,
+						// autoplayHoverPause: true,
+						smartSpeed: 800
+					});
+				}).catch((error) => {
+					console.error("Error fetching wishes: ", error);
+					const carousel = document.getElementById("testimonials-carousel");
+					carousel.innerHTML = "<p>Error loading wishes. Please try again later.</p>";
+				});
+			});
+
+		</script>
 		<script>
 			var d = new Date(new Date().getTime() + 200 * 120 * 120 * 2000);
 
@@ -595,12 +612,12 @@
 			});
 
 			//jQuery example
-			$('#simply-countdown-losange').simplyCountdown({
-				year: d.getFullYear(),
-				month: d.getMonth() + 1,
-				day: d.getDate(),
-				enableUtc: false
-			});
+			// $('#simply-countdown-losange').simplyCountdown({
+			// 	year: d.getFullYear(),
+			// 	month: d.getMonth() + 1,
+			// 	day: d.getDate(),
+			// 	enableUtc: false
+			// });
 		</script>
 
 		<script>
@@ -658,13 +675,14 @@
 		// Autoplay the audio
 		audio.play();
 	</script> -->
-		<script>
+		<!-- <script>
 			// Hide the preloader after 5 seconds
 			setTimeout(function () {
 				var preloader = document.getElementById('preloader');
 				preloader.style.display = 'none';
 			}, 10000); // 5000 milliseconds = 5 seconds
-		</script>
+		</script> -->
+
 
 </body>
 

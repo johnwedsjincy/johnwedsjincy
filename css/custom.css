@@ -40,7 +40,7 @@
 
 
 .alert-box {
-  display: none;
+  display: flex;
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
@@ -55,6 +55,7 @@
   justify-content: center;
   /* Center the alert */
   align-items: center;
+  z-index: 999;
 }
 
 .alert-content {

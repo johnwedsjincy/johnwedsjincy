@@ -40,7 +40,7 @@
 
 
 .alert-box {
-  display: flex;
+  display: none;
   /* Hidden by default */
   position: fixed;
   /* Stay in place */

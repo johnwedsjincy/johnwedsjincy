@@ -245,3 +245,9 @@
     width: 100%;
   }
 }
+
+.maphead{
+  text-align: center;
+  font-size: 45px;
+  color: #4e654b;
+}

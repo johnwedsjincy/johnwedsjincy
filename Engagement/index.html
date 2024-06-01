@@ -31,14 +31,17 @@
   <link rel="stylesheet" href="fonts/fonts.css">
   <link rel="stylesheet" href="css/custom.css">
   <link rel="stylesheet" href="../wedding/css/style.css">
-
+  <link rel="stylesheet" href="css/custom.css">
 
   <!-- Owl Carousel  -->
-  <link rel="stylesheet" href="../wedding/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="../wedding/css/owl.theme.default.min.css">
+  <!-- <link rel="stylesheet" href="../wedding/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../wedding/css/owl.theme.default.min.css"> -->
 
   <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore-compat.js"></script>
+
+  <!-- <link rel="stylesheet" href="owlcarousel/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.min.css"> -->
 
   <noscript>
     <style type="text/css">
@@ -150,7 +153,7 @@
                   <li><i class="text-muted fas fa-map-marker-alt"></i><span class="pl-2 text-muted">St. Alphonsa Syro
                       Malabar Forane Church, Kankanady, Mangaluru</span></li>
                   <li class="pt-2"><i class="text-muted far fa-calendar-alt"></i><span class="pl-2 text-muted">27 June
-                      2024, 4PM - 4.30PM</span></li>
+                      2024, 4.30PM </span></li>
                 </ul>
                 <p>"Celebrate with us as we embark on the journey of love and commitment! The Pandimattathil Family
                   cordially
@@ -183,7 +186,7 @@
                       Platinum Jubilee Auditorium,
                       Kankanady, Mangaluru</span></li>
                   <li class="pt-2"><i class="text-muted far fa-calendar-alt "></i><span class="pl-2 text-muted">27 June
-                      2024, 4.30PM - 11PM</span></li>
+                      2024, 5.00PM</span></li>
                 </ul>
                 <p>"In the glow of love, the Pandimattathil Family warmly extends an invitation to share in the joy of
                   our
@@ -375,6 +378,22 @@
           </div>
         </div>
       </div>
+      <div class="ww-section">
+        <div class="container">
+          <h2 class="h1 text-center pb-3 ww-title colorforh1 flowerfont" data-aos="zoom-in-down"
+            data-aos-duration="1000">Best Wishes</h2>
+          <!-- <div class="h1 text-center pb-3 ww-title colorforh1 flowerfont">Best Wishes</div> -->
+          <div class="testimonial-carousel" id="testimonials-carousel"></div>
+        </div>
+      </div>
+
+      <a href="../wedding/about.html">
+        <div class="container">
+          <div class="col-md-auto wish">
+            <div class="wishbutton">Wish Them</div>
+          </div>
+        </div>
+      </a>
 
       <!-- <div id="fh5co-testimonial">
         <div class="container">
@@ -476,8 +495,10 @@
   <script src="scripts/aos.js?ver=1.1.0"></script>
   <script src="scripts/ekko-lightbox.min.js?ver=1.1.0"></script>
   <script src="scripts/main.js?ver=1.1.0"></script>
-  <script src="../wedding/js/jquery.min.js"></script>
-  <script src="../wedding/js/owl.carousel.min.js"></script>
+  <!-- <script src="../wedding/js/jquery.min.js"></script> -->
+  <!-- <script src="../wedding/js/owl.carousel.min.js"></script> -->
+  <script src="jquery.min.js"></script>
+  <script src="owlcarousel/owl.carousel.min.js"></script>
 
   <script>
     function playAudio() {
@@ -486,7 +507,7 @@
     }
   </script>
 
-  <script>
+  <!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Your web app's Firebase configuration
       var firebaseConfig = {
@@ -540,6 +561,80 @@
       });
     });
 
+  </script> -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAi5B00blBvEoioXkgjgBxihfZO9iO0H6k",
+        authDomain: "wedding-34fd2.firebaseapp.com",
+        projectId: "wedding-34fd2",
+        storageBucket: "wedding-34fd2.appspot.com",
+        messagingSenderId: "638999458531",
+        appId: "1:638999458531:web:2a9e0846004fda9cba0bd6"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      var db = firebase.firestore();
+
+      // Fetch data from Firestore
+      db.collection("users").get().then((querySnapshot) => {
+        const carousel = document.getElementById("testimonials-carousel");
+        carousel.innerHTML = ""; // Clear any existing content
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const testimonialItem = document.createElement("div");
+          testimonialItem.classList.add("testimonial-item");
+          testimonialItem.innerHTML = `
+                        <div class="testimony-slide active text-center">
+                           
+                            <blockquote>
+                                <p>"${data.message}"</p>
+                            </blockquote>
+                            <span class="best">${data.name}</span>
+                        </div>
+                    `;
+          carousel.appendChild(testimonialItem);
+        });
+
+        // Auto-swipe the carousel
+        setInterval(function () {
+          carousel.scrollLeft += carousel.offsetWidth; // Scroll one item's width
+          if (carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth) {
+            carousel.scrollLeft = 0; // Reset back to the beginning if reached the end
+          }
+        }, 5000); // Change the interval as needed (in milliseconds)
+      }).catch((error) => {
+        console.error("Error fetching testimonials: ", error);
+        const carousel = document.getElementById("testimonials-carousel");
+        carousel.innerHTML = "<p>Error loading testimonials. Please try again later.</p>";
+      });
+    });
+    //   // Fetch data from Firestore
+    //   db.collection("users").get().then((querySnapshot) => {
+    //     const carousel = document.getElementById("testimonials-carousel");
+    //     carousel.innerHTML = ""; // Clear any existing content
+    //     querySnapshot.forEach((doc) => {
+    //       const data = doc.data();
+    //       const testimonialItem = document.createElement("div");
+    //       testimonialItem.classList.add("testimonial-item");
+    //       testimonialItem.innerHTML = `
+    //                 <div class="testimony-slide active text-center">
+    //                     <span class="best">${data.name}</span>
+    //                     <blockquote>
+    //                         <p>"${data.message}"</p>
+    //                     </blockquote>
+    //                 </div>
+    //             `;
+    //       carousel.appendChild(testimonialItem);
+    //     });
+    //   }).catch((error) => {
+    //     console.error("Error fetching testimonials: ", error);
+    //     const carousel = document.getElementById("testimonials-carousel");
+    //     carousel.innerHTML = "<p>Error loading testimonials. Please try again later.</p>";
+    //   });
+    // });
   </script>
 </body>
 
